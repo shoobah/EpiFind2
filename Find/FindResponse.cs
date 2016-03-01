@@ -16,5 +16,6 @@ namespace LMSE.FindApi.Find
         public IEnumerable<CommonSearchHit> Hits { get; set; }
         public int PageTotal { get; set; }
         public int DocTotal { get; set; }
+        public string Tab { get; set; }
     }
 }

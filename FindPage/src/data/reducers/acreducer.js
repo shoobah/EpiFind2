@@ -1,6 +1,7 @@
 import {ACSUCCESS, ACFAILED, ACSTART, ACRESET, NEXT_AUTOCOMPLETE_ALTERNATIVE, PREVIOUS_AUTOCOMPLETE_ALTERNATIVE, RESET_AUTOCOMPLETE_ALTERNATIVE} from '../actionCreators'
 
 export function autocompleteReducer(state = {list:[], selectedIndex:-1}, action) {
+
     switch (action.type) {
         case ACSUCCESS:
             return Object.assign({}, state, {

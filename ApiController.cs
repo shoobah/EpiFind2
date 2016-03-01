@@ -90,7 +90,8 @@ namespace LMSE.FindApi
                 Total = result.TotalMatching,
                 PageTotal = pageResult.TotalMatching,
                 DocTotal = docResult.TotalMatching,
-                Success = true
+                Success = true,
+                Tab = query.Type
             };
             return findresponse;
         }

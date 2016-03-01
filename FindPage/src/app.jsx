@@ -33,7 +33,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.myQuery = {}
-        this.history = createHistory()
+        this.history = createHistory()        
     }
     
     /** Hantera tangenttryck i sökrutan */
@@ -195,7 +195,7 @@ updateQueryAndDoSearch(queryObject) {
     this.removeUrlQuery()
     this.props.setQuery(queryObject)    
     this.props.getDYM(this.props.findURL, queryObject.Text)
-    this.props.doSearch(queryObject)
+    this.props.doSearch(queryObject)    
     window.scrollTo(0, 0);
 }
 
@@ -204,15 +204,16 @@ componentDidMount() {
     let extQueryText = getQueryVariable('query')
     // let newQ = Object.assign({}, this.props.query, this.props.query)
     // this.props.setQuery(newQ)
+    this.props.resetTabs();
+    
     if (extQueryText) {
         let newQ = Object.assign({}, this.props.query, {
             Text: extQueryText
         }, this.addDataFields())
         this.updateQueryAndDoSearch(newQ)
     }
-    this.props.resetTabs();
     
-    unlisten = this.history.listen(location => { })
+    unlisten = this.history.listen(location => { })    
 }
 
 componentWillUnmount() {

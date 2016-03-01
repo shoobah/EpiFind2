@@ -12,7 +12,7 @@ function requestSearch (query) {
 
 export const SEARCHSUCCESS = 'SEARCHSUCCESS'
 // Dispatch this when request returns
-export function searchSuccess (json, query) {
+export function searchSuccess (json, query) { 
   return {
     type: SEARCHSUCCESS,
     response: json,
@@ -82,7 +82,7 @@ export function doSearch (query) {
     })
       .then(checkStatus)
       .then(response => response.json())
-      .then(json => dispatch(searchSuccess(json, query)))
+      .then(json => dispatch(searchSuccess(json, query)))      
       .catch(error => {
         console.error('search',error)
         return dispatch(searchFailed(error))

@@ -37,14 +37,15 @@ let startState = {
 }
 
 export function findReducer(state = startState, action) {
+ 
     switch (action.type) {
         case SEARCHSTART:
             return Object.assign({}, state, {
                 status: 'fetching',
                 fetchFailed: false,
-                autocomplete: []                
+                autocomplete: []           
             })
-        case SEARCHSUCCESS:
+        case SEARCHSUCCESS:                
             return Object.assign({}, state, {
                 fetchFailed: false,
                 status: 'success',
@@ -54,15 +55,32 @@ export function findReducer(state = startState, action) {
                 query: action.query,
                 cats: action.response.CategoriesList,
                 pageTotal: action.response.PageTotal,
-                docTotal: action.response.DocTotal
+                docTotal: action.response.DocTotal,
+                tabList: [
+                    {
+                        Name: 'Alla',
+                        Type: '',
+                        IsActive: action.response.Tab === ''
+                    },
+                    {
+                        Name: 'Sidor',
+                        Type: 'page',
+                        IsActive: action.response.Tab === 'page'
+                    },
+                    {
+                        Name: 'Dokument',
+                        Type: 'doc',
+                        IsActive: action.response.Tab === 'doc'
+                    }                    
+                ]
             })
-        case SEARCHFAILED:
+        case SEARCHFAILED:            
             return Object.assign({}, state, {
                 status: 'failed',
                 fetchFailed: true,
                 message: action.message
             })
-        case CLEARHITS:
+        case CLEARHITS:            
             return Object.assign({}, state, {
                 hits: [],
                 status: 'clearing',
@@ -74,7 +92,7 @@ export function findReducer(state = startState, action) {
                 status: 'editing',
                 query: action.query
             })
-        case SETTABS:
+        case SETTABS:            
             return Object.assign({}, state, {
                 status: 'tabbing',
                 tabList: action.tabList
